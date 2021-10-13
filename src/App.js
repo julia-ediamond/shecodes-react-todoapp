@@ -4,34 +4,39 @@ import TodoForm from "./components/TodoForm/TodoForm";
 import Date from "./components/Date/Date";
 import "./App.css"; 
 
-function App() {
+function App(props) {
   const [todos, setTodos] = useState([
     {text: "Learn about React",
+    date: "2021-10-15",
     isCompleted: false,
     },
     {text: "Meet friend for lunch",
+    date: "2021-10-15",
     isCompleted: false,
     },
     {
     text: "Build really cool todo app",
+    date: "2021-10-15",
     isCompleted: false,
     }, 
     {
     text: "Go camping",
+    date: "2021-10-15",
     isCompleted: false,
     }
   ]);
-
-  const [when, setWhen] = useState (["today", "tomorrow", "next week"])
+  const { dueDate, setDueDate } = props;
 
   //Create a function to add the new todo item to state:
-  const addTodo = (text) => {
+  const addTodo = (text, date) => {
   //? build new array of todaos, text ?
-    const newTodos = [...todos, { text }];
+    const newTodos = [...todos, { text }, { date }];
+    const newDate = "";
   //push new todos to state
     setTodos(newTodos);
+    setDueDate(newDate);
   };
-  //function for marking todo items as complete:
+  //mark as complete:
   const completeTodo = (index) => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
@@ -60,10 +65,7 @@ function App() {
         />
     ))}
 
-      {when.map((when, index) => (
 
-        <Date when={when} key={index}/>
-      ))}
 
 
   {/* provide the value as a prop key / reference */}
